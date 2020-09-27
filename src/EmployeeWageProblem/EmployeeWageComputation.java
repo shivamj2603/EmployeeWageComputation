@@ -5,6 +5,7 @@ public class EmployeeWageComputation {
 	public static void main(String[] args) {
 		//constants
 		int FULL_TIME = 1;
+		int PART_TIME = 2;
 		int WAGE_PER_HOUR = 20;
 		//variables
 		int empWage =0;
@@ -12,6 +13,10 @@ public class EmployeeWageComputation {
 		int empCheck = (int) Math.floor((Math.random() * 10))%2;
 		if(empCheck == FULL_TIME) {
 			empHours = 8;
+		}
+		
+		else if(empCheck == PART_TIME) {
+			empHours = 4;
 		}
 		
 		empWage = WAGE_PER_HOUR * empHours;

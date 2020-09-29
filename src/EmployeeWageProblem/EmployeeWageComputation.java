@@ -53,10 +53,10 @@ public class EmployeeWageComputation implements CompanyEmployeeWage {
 
 		for(HashMap.Entry m:dailyWageMap.entrySet())
 		{
-			System.out.println("Day " + m.getKey()+" wage: " + m.getValue());
+			System.out.println("Day " + m.getKey() + " wage: " + m.getValue());
 		}
 
-		System.out.println("Days : " + totalWorkingDays+" Emp Hours : " + totalEmpHours);
+		System.out.println("Days : " + totalWorkingDays + " Emp Hours : " + totalEmpHours);
 		int totalEmpWage = totalEmpHours * companyEmpWage.empRate;
 		return totalEmpWage;
 	}

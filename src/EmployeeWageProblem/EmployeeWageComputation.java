@@ -1,24 +1,25 @@
 package EmployeeWageProblem;
+import java.util.ArrayList;
 
 public class EmployeeWageComputation {
 	//constants
 	static final int FULL_TIME = 1;
 	static final int PART_TIME = 2;
 	//variables
-	private int numOfCompany = 0;
-	private CompanyEmpWage[] companyEmpWageArray;
+	private ArrayList<CompanyEmpWage> companyEmpWageList;
 	
 	public EmployeeWageComputation() {
-		companyEmpWageArray = new CompanyEmpWage[5];
+		companyEmpWageList = new ArrayList<CompanyEmpWage>();
 	}
 	private void addCompanyEmpWage(String company,int empRate,int noOfWorkingDays,int hoursPerMonth) {
-		companyEmpWageArray[numOfCompany] = new CompanyEmpWage(company, empRate, noOfWorkingDays, hoursPerMonth);
-		numOfCompany++;
+		CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, empRate, noOfWorkingDays, hoursPerMonth);
+		companyEmpWageList.add(companyEmpWage);
 	}
 	private void computeEmpWage() {
-		for(int i = 0; i < numOfCompany; i++) {
-			companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i])); 
-			System.out.println(companyEmpWageArray[i]);
+		for(int i = 0; i < companyEmpWageList.size(); i++) {
+			CompanyEmpWage companyEmpWage = companyEmpWageList.get(i);
+			companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage)); 
+			System.out.println(companyEmpWage);
 		}
 	}
 	private int computeEmpWage(CompanyEmpWage companyEmpWage) {
@@ -44,7 +45,7 @@ public class EmployeeWageComputation {
 			}			
 			totalEmpHours += empHours;
 		}
-	    System.out.println("Days : "+totalWorkingDays+" Emp Hours : "+ totalEmpHours);
+	        System.out.println("Days : "+totalWorkingDays+" Emp Hours : "+ totalEmpHours);
 		return totalEmpHours * companyEmpWage.empRate;
 	}
 	public static void main(String[] args) {

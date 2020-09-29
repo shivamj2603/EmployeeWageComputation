@@ -1,7 +1,7 @@
 package EmployeeWageProblem;
 import java.util.ArrayList;
 
-public class EmployeeWageComputation {
+public class EmployeeWageComputation implements CompanyEmployeeWage {
 	//constants
 	static final int FULL_TIME = 1;
 	static final int PART_TIME = 2;

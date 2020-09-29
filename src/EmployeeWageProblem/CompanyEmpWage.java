@@ -1,4 +1,5 @@
 package EmployeeWageProblem;
+import java.util.ArrayList;
 
 public class CompanyEmpWage {
 	private String company;
@@ -19,7 +20,7 @@ public class CompanyEmpWage {
 		this.totalEmpWage = totalEmpWage;
 	}
 	public String toString() {
-		return "Total Employee Wage of " + company + " is " + totalEmpWage;	
+		return "The above records are daily wages for comapny" + company + "\nTotal Employee Wage of " + company + " is " + totalEmpWage;	
 	}
 
 }

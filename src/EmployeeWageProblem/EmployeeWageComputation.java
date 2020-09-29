@@ -1,5 +1,5 @@
 package EmployeeWageProblem;
-import java.util.ArrayList;
+import java.util.*;
 
 public class EmployeeWageComputation implements CompanyEmployeeWage {
 	//constants
@@ -7,15 +7,17 @@ public class EmployeeWageComputation implements CompanyEmployeeWage {
 	static final int PART_TIME = 2;
 	//variables
 	private ArrayList<CompanyEmpWage> companyEmpWageList;
+	public HashMap<Integer,Integer> dailyWageMap;
 	
 	public EmployeeWageComputation() {
 		companyEmpWageList = new ArrayList<CompanyEmpWage>();
 	}
-	private void addCompanyEmpWage(String company,int empRate,int noOfWorkingDays,int hoursPerMonth) {
+	public void addCompanyEmpWage(String company,int empRate,int noOfWorkingDays,int hoursPerMonth) {
 		CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, empRate, noOfWorkingDays, hoursPerMonth);
-		companyEmpWageList.add(companyEmpWage);
+		dailyWageMap = new HashMap<Integer,Integer>();
+		companyEmpWageList.add(companyEmpWage);	
 	}
-	private void computeEmpWage() {
+	public void computeEmpWage() {
 		for(int i = 0; i < companyEmpWageList.size(); i++) {
 			CompanyEmpWage companyEmpWage = companyEmpWageList.get(i);
 			companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage)); 
@@ -29,6 +31,7 @@ public class EmployeeWageComputation implements CompanyEmployeeWage {
 				&& totalWorkingDays < companyEmpWage.noOfWorkingDays) {
 			int empHours = 0;
 			int empWage = 0;
+			ArrayList<Integer> dailyWage = new ArrayList<Integer>();
 			int empCheck = (int) Math.floor((Math.random() * 10)) % 3;
 			switch(empCheck) {
 			case FULL_TIME: 
@@ -44,7 +47,15 @@ public class EmployeeWageComputation implements CompanyEmployeeWage {
 				break;
 			}			
 			totalEmpHours += empHours;
+			empWage = empHours * companyEmpWage.empRate;
+			dailyWageMap.put(totalWorkingDays,empWage);
 		}
+		
+			for(HashMap.Entry m:dailyWageMap.entrySet())
+	        {
+	            System.out.println("Day "+m.getKey()+" wage: "+m.getValue());
+	        }
+
 	        System.out.println("Days : "+totalWorkingDays+" Emp Hours : "+ totalEmpHours);
 		return totalEmpHours * companyEmpWage.empRate;
 	}

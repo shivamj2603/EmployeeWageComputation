@@ -4,8 +4,18 @@ public class EmployeeWageComputation {
 	//constants
 	static final int FULL_TIME = 1;
 	static final int PART_TIME = 2;
-	public static void calculateWage(String company,int empRate,int noOfWorkingDays,int noOfHoursPerMonth) {
-		int totalEmpWage = 0;
+	private String company;
+	private int empRate;
+	private int noOfWorkingDays;
+	private int noOfHoursPerMonth;
+	private int totalEmpWage;
+	public EmployeeWageComputation(String company,int empRate,int noOfWorkingDays,int noOfHoursPerMonth) {
+		this.company = company;
+		this.empRate = empRate;
+		this.noOfWorkingDays = noOfWorkingDays;
+		this.noOfHoursPerMonth= noOfHoursPerMonth;
+	}
+	int calculateWage() {
 		int totalEmpHours = 0;
 		int totalWorkingDays = 0;
 		while(totalEmpHours < noOfHoursPerMonth
@@ -30,11 +40,18 @@ public class EmployeeWageComputation {
 			totalEmpWage += empWage;
 			totalEmpHours += empHours;
 		}
-		System.out.println("Total Employee Wage of " + company + " is " + totalEmpWage);	
+		return totalEmpWage;
+	}
+	public String toString() {
+		return "Total Employee Wage of " + company + " is " + totalEmpWage;	
 	}
 	public static void main(String[] args) {
-		calculateWage("WalMart",25,45,120);
-		calculateWage("Reliance",30,16,90);
+		EmployeeWageComputation WalMart = new EmployeeWageComputation("D-Mart",20,30,100);
+		WalMart.calculateWage();
+		System.out.println(WalMart);
+		EmployeeWageComputation Reliance = new EmployeeWageComputation("Reliance",25,25,120);
+		Reliance.calculateWage();
+		System.out.println(Reliance);
 	}
 
 }

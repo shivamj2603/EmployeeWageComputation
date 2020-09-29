@@ -8,7 +8,7 @@ public class EmployeeWageComputation implements CompanyEmployeeWage {
 	//variables
 	private ArrayList<CompanyEmpWage> companyEmpWageList;
 	public HashMap<Integer,Integer> dailyWageMap;
-	
+
 	public EmployeeWageComputation() {
 		companyEmpWageList = new ArrayList<CompanyEmpWage>();
 	}
@@ -20,7 +20,7 @@ public class EmployeeWageComputation implements CompanyEmployeeWage {
 	public void computeEmpWage() {
 		for(int i = 0; i < companyEmpWageList.size(); i++) {
 			CompanyEmpWage companyEmpWage = companyEmpWageList.get(i);
-			companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage)); 
+			companyEmpWage.setTotalEmpWage(computeEmpWage(companyEmpWage)); 
 			System.out.println(companyEmpWage);
 		}
 	}
@@ -50,20 +50,32 @@ public class EmployeeWageComputation implements CompanyEmployeeWage {
 			empWage = empHours * companyEmpWage.empRate;
 			dailyWageMap.put(totalWorkingDays,empWage);
 		}
-		
-			for(HashMap.Entry m:dailyWageMap.entrySet())
-	        {
-	            System.out.println("Day "+m.getKey()+" wage: "+m.getValue());
-	        }
 
-	        System.out.println("Days : "+totalWorkingDays+" Emp Hours : "+ totalEmpHours);
-		return totalEmpHours * companyEmpWage.empRate;
+		for(HashMap.Entry m:dailyWageMap.entrySet())
+		{
+			System.out.println("Day " + m.getKey()+" wage: " + m.getValue());
+		}
+
+		System.out.println("Days : " + totalWorkingDays+" Emp Hours : " + totalEmpHours);
+		int totalEmpWage = totalEmpHours * companyEmpWage.empRate;
+		return totalEmpWage;
+	}
+	public int getTotalEmpWage(String company) {
+		int totalWage = 0;
+		for(int i = 0; i < companyEmpWageList.size(); i++ ) {
+			if(companyEmpWageList.get(i).company.equalsIgnoreCase(company)) {
+				totalWage = companyEmpWageList.get(i).totalEmpWage;
+				break;
+			}
+		}
+		return totalWage;
 	}
 	public static void main(String[] args) {
 		EmployeeWageComputation empWageBuilder = new EmployeeWageComputation();
 		empWageBuilder.addCompanyEmpWage("WalMart",20,30,100);
 		empWageBuilder.addCompanyEmpWage("Reliance",25,20,120);
 		empWageBuilder.computeEmpWage();
-		}
+		System.out.println("Total Wage for Walmart: " + empWageBuilder.getTotalEmpWage("Walmart"));
+		System.out.println("Total Wage for Reliance: " + empWageBuilder.getTotalEmpWage("Reliance"));
+	}
 }
-		

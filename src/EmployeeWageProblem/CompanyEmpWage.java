@@ -2,11 +2,11 @@ package EmployeeWageProblem;
 import java.util.ArrayList;
 
 public class CompanyEmpWage {
-	private String company;
+	public String company;
 	public int empRate;
 	public int noOfWorkingDays;
 	public int noOfHoursPerMonth;
-	private int totalEmpWage;
+	public int totalEmpWage;
 	public CompanyEmpWage(String company,int empRate,int noOfWorkingDays,int noOfHoursPerMonth) {
 		this.company = company;
 		this.empRate = empRate;
@@ -20,7 +20,7 @@ public class CompanyEmpWage {
 		this.totalEmpWage = totalEmpWage;
 	}
 	public String toString() {
-		return "The above records are daily wages for comapny" + company + "\nTotal Employee Wage of " + company + " is " + totalEmpWage;	
+		return "The above records are daily wages for company " + company + "\nTotal Employee Wage of " + company + " is " + totalEmpWage;	
 	}
 
 }
